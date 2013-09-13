@@ -22,12 +22,14 @@ public class UsandoJDBC
         // TODO code application logic here
         Pessoa pessoa = new Pessoa();
         
-        pessoa.setNome("Celi Fiuza de Souza Fernandes");
+        pessoa.setCodigo(8);
+        pessoa.setNome("Celi");
         pessoa.setDataNascimento(new Date());
         
         PessoaDAO dao = new PessoaDAO();
         
-        dao.Salvar(pessoa);        
+        //dao.Salvar(pessoa);  
+        dao.Remover(pessoa);
     }
 }
 
