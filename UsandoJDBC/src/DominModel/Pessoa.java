@@ -4,7 +4,12 @@
  */
 package DominModel;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -22,6 +27,7 @@ public class Pessoa {
     }
 
     /*---------- Getters e Setters -------------------------------------------*/
+    /*---------------------- Nome --------------------------------------------*/
     public String getNome() 
     {
         return nome;
@@ -29,9 +35,13 @@ public class Pessoa {
 
     public void setNome(String nome) 
     {
-        this.nome = nome;
+        Pattern Nome = Pattern.compile("[\\w\\s]{3,}");
+        Matcher verifica = Nome.matcher(nome);
+        
+        if(verifica.matches())
+              this.nome = nome;
     }
-
+    /*--------------------- Data de Nascimento -------------------------------*/
     public Date getDataNascimento() 
     {
         return DataNascimento;
@@ -39,9 +49,13 @@ public class Pessoa {
 
     public void setDataNascimento(Date DataNascimento) 
     {
-        this.DataNascimento = DataNascimento;
+        Calendar calendario = GregorianCalendar.getInstance();
+        calendario.set(1900,1,1);
+        
+        if(calendario.getTime().after(DataNascimento))
+             this.DataNascimento = DataNascimento;
     }
-
+    /*--------------------- Codigo -------------------------------------------*/
     public int getCodigo() 
     {
         return codigo;
@@ -52,4 +66,35 @@ public class Pessoa {
         if(codigo >= 0)
             this.codigo = codigo;
     }
+
+    /*----------------- hashCode ---------------------------------------------*/
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 43 * hash + Objects.hashCode(this.nome);
+        hash = 43 * hash + this.codigo;
+        hash = 43 * hash + Objects.hashCode(this.DataNascimento);
+        return hash;
+    }
+    /*----------------- Equals -----------------------------------------------*/
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Pessoa other = (Pessoa) obj;
+        if (!Objects.equals(this.nome, other.nome)) {
+            return false;
+        }
+        if (this.codigo != other.codigo) {
+            return false;
+        }
+        if (!Objects.equals(this.DataNascimento, other.DataNascimento)) {
+            return false;
+        }
+        return true;
+    }    
 }
