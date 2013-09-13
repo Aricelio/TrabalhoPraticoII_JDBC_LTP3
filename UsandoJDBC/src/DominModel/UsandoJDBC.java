@@ -4,17 +4,30 @@
  */
 package DominModel;
 
+import DataAccess.*;
+import java.util.Date;
+
 /**
  *
- * @author alisson 02
+ * @author ALUNO
  */
-public class UsandoJDBC {
+public class UsandoJDBC 
+{
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) 
+    {
         // TODO code application logic here
+        Pessoa pessoa = new Pessoa();
         
+        pessoa.setNome("Celi Fiuza de Souza Fernandes");
+        pessoa.setDataNascimento(new Date());
+        
+        PessoaDAO dao = new PessoaDAO();
+        
+        dao.Salvar(pessoa);        
     }
 }
+
