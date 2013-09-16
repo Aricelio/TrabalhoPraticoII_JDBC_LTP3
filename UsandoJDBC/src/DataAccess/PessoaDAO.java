@@ -127,7 +127,7 @@ public class PessoaDAO extends DAO {
     }
 
     /*------------------------------------------------------------------------*/
-    private void SalvarEmail(Email obj) {
+    private void SalvarEmail(Pessoa pessoa, Email obj) {
         if (obj.getCodigo() == 0) {
             try {
                 PreparedStatement sql = getConexao().prepareStatement("insert into emails(pessoa,email) values(?,?)");
@@ -143,7 +143,7 @@ public class PessoaDAO extends DAO {
         else {
             try{
                 PreparedStatement sql = getConexao().prepareStatement("update emails set pessoa = ?, email = ? where id = ?");
-                sql.setString(1,pessoa.getCodigo());
+                sql.setString(1, pessoa.getCodigo());
                 sql.setString(2, obj.getEmail());
                 sql.setInt(3, obj.getCodigo());
                 sql.executeQuery();
