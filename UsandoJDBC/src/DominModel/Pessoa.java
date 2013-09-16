@@ -4,9 +4,11 @@
  */
 package DominModel;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.List;
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -20,10 +22,12 @@ public class Pessoa {
     private String nome;
     private int codigo;
     private Date DataNascimento;
+    private List<Email> emails;
 
     /*---------- Construtor --------------------------------------------------*/
     public Pessoa() {
         codigo = 0;
+        emails = new ArrayList<Email>();
     }
 
     /*---------- Getters e Setters -------------------------------------------*/
@@ -67,6 +71,22 @@ public class Pessoa {
             this.codigo = codigo;
     }
 
+    /*----------- Adicionar email---------------------------------------------*/  
+    public void addEmail(Email email){
+        if(!emails.contains(email)){
+            emails.add(email);
+        }
+    }
+   /*-----------Remover Email-------------------------------------------------*/
+    public void removeEmail(Email email){
+        if(emails.contains(email)){
+            emails.remove(email);
+        }
+    } 
+    /*----------- Retorna a lista de emails ----------------------------------*/
+    public List<Email> getEmails(){
+        return emails;
+    }
     /*----------------- hashCode ---------------------------------------------*/
     @Override
     public int hashCode() {
