@@ -29,7 +29,7 @@ public class PessoaDAO extends DAO {
                 sql.setString(1, obj.getNome());
                 sql.setDate(2, new java.sql.Date(obj.getDataNascimento().getTime()));
                 sql.executeUpdate();
-                return true;
+                
                 
                /*------- Salva o email ---------------------------------------*/ 
                 for(Email e : obj.getEmails())
@@ -46,7 +46,7 @@ public class PessoaDAO extends DAO {
                 {
                     SalvarTelefone(obj,e);
                 }
-
+                return true;
             } catch (Exception ex) {
                 System.err.println(ex.getMessage());
                 return false;
