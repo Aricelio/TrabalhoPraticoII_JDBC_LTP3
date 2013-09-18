@@ -26,7 +26,7 @@ public class Main
         //pessoa.setNome("Celi");
         //pessoa.setDataNascimento(new Date());
         
-        PessoaDAO dao = new PessoaDAO();
+        //PessoaDAO dao = new PessoaDAO();
         
         //dao.Salvar(pessoa);  
         //dao.Remover(pessoa);
@@ -41,15 +41,56 @@ public class Main
         System.out.print("Data de Nascimento: ");
         System.out.println(pessoa.getDataNascimento());*/
         Pessoa p = new Pessoa();
-        p.setNome("Pessoa1");
-        p.add(new Email("email@teste"));
-        p.add(new Email("email@teste2"));
-        p.add(new Telefone("32156611"));
-        p.add(new Telefone("32212011"));
-        p.add(new Endereco("rua tal"));
+        
+        Email e = new Email();
+        Email f = new Email();
+        
+        Telefone t = new Telefone();
+        Telefone te = new Telefone();
+        
+        Endereco en = new Endereco();
+        Endereco end = new Endereco();
+        
+        e.setEmail("ariceliosouza@hotmail.com");
+        f.setEmail("ariceliodesouza@gmail.com");
+        
+        t.setTelefone(36135000);
+        t.setDDD((byte)38);
+        t.setOperadora((byte)011);        
+        
+        te.setTelefone(36134000);
+        te.setDDD((byte)39);
+        te.setOperadora((byte)012);
+        
+        en.setNumero(98);
+        en.setRua("Rua Coronel Serrão");
+        en.setBairro("São José");
+        en.setCidade("Itacarambi");
+        en.setUf("MG");
+        en.setPais("Brasil");
+        
+        end.setNumero(300);
+        end.setRua("Rua das Flores");
+        en.setBairro("Centro");
+        en.setCidade("Januaria");
+        en.setUf("MG");
+        en.setPais("Brasil");
+        
+        p.setNome("Philipe Souza");
+        
+        p.setDataNascimento(new Date());
+        
+        p.addEmail(e);
+        p.addEmail(f);
+        p.addTelefone(t);
+        p.addTelefone(te);
+        p.addEndereco(en);
+        p.addEndereco(end);
+        
+        
         
         PessoaDAO dao = new PessoaDAO();
-        dao.Salvar();
+        dao.Salvar(p);
     }
 }
 
