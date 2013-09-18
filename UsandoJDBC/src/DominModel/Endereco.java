@@ -60,15 +60,14 @@ public class Endereco
     }
     
     public void setNumero(int numero) 
-    {
-        
+    {        
          if(numero >= 1)
             this.numero = numero;        
     }
 
     public void setRua(String rua) 
     {        
-        Pattern Rua = Pattern.compile("[0-9\\w\\s]{3,}");
+        Pattern Rua = Pattern.compile("\\w*{3,}");
         Matcher verifica = Rua.matcher(rua);
         
         if(verifica.matches())
@@ -77,7 +76,7 @@ public class Endereco
 
     public void setBairro(String bairro) 
     {        
-        Pattern Bairro = Pattern.compile("[0-9\\w\\s]{3,}");
+        Pattern Bairro = Pattern.compile("\\w*{3,}");
         Matcher verifica = Bairro.matcher(bairro);
         
         if(verifica.matches())        
@@ -86,7 +85,7 @@ public class Endereco
 
     public void setCidade(String cidade) 
     {
-        Pattern Cidade = Pattern.compile("[0-9\\w\\s]{3,}");
+        Pattern Cidade = Pattern.compile("\\w*{3,}");
         Matcher verifica = Cidade.matcher(cidade);
         
         if(verifica.matches())
@@ -95,7 +94,7 @@ public class Endereco
 
     public void setUf(String uf) 
     {
-        Pattern UF = Pattern.compile("[a-zA-Z]{2}");
+        Pattern UF = Pattern.compile("\\w*{3,}");
         Matcher verifica = UF.matcher(uf);
         
         if(verifica.matches())
@@ -104,7 +103,7 @@ public class Endereco
 
     public void setPais(String pais) 
     {
-        Pattern Pais = Pattern.compile("[0-9\\w\\s]{3,}");
+        Pattern Pais = Pattern.compile("\\w*{3,}");
         Matcher verifica = Pais.matcher(pais);
         
         if(verifica.matches())
