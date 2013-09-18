@@ -23,11 +23,15 @@ public class Pessoa {
     private int codigo;
     private Date DataNascimento;
     private List<Email> emails;
+    private List<Endereco> enderecos;
+    private List<Telefone> telefones;
 
     /*---------- Construtor --------------------------------------------------*/
     public Pessoa() {
         codigo = 0;
         emails = new ArrayList<Email>();
+        enderecos = new ArrayList<Endereco>();
+        telefones = new ArrayList<Telefone>();
     }
 
     /*---------- Getters e Setters -------------------------------------------*/
@@ -56,7 +60,7 @@ public class Pessoa {
         Calendar calendario = GregorianCalendar.getInstance();
         calendario.set(1900,1,1);
         
-        if(calendario.getTime().after(DataNascimento))
+        if(calendario.getTime().before(DataNascimento))
              this.DataNascimento = DataNascimento;
     }
     /*--------------------- Codigo -------------------------------------------*/
@@ -86,6 +90,40 @@ public class Pessoa {
     /*----------- Retorna a lista de emails ----------------------------------*/
     public List<Email> getEmails(){
         return emails;
+    }
+    
+    /*----------- Adiciona um Endereco ---------------------------------------*/
+     public void addEndereco(Endereco endereco){
+        if(!enderecos.contains(endereco)){
+            enderecos.add(endereco);
+        }
+    }
+    /*----------- Remove um Endereco -----------------------------------------*/
+     public void removeEndereco(Endereco endereco){
+        if(enderecos.contains(endereco)){
+            enderecos.remove(endereco);
+        }
+    } 
+    /*----------- Retorna a lista de Enderecos--------------------------------*/
+    public List<Endereco> getEnderecos(){
+        return enderecos;
+    }
+      /*-----------Adicionar um Telefone----------*/ 
+    public void addTelefone(Telefone telefone)
+    {
+        if(!telefones.contains(telefone)){
+            telefones.add(telefone);
+        }
+    }
+    /*----------Remove uma Telefone----------------*/ 
+    public void removeTelefone(Telefone telefone){
+        if(telefones.contains(telefone)){
+            telefones.remove(telefone);
+        }
+    } 
+    /*--------- Retorna a lista de telefones ---------------------------------*/
+    public List<Telefone> getTelefones(){
+        return telefones;
     }
     /*----------------- hashCode ---------------------------------------------*/
     @Override
