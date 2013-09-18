@@ -175,7 +175,8 @@ public class PessoaDAO extends DAO {
     /*------------------ Salvar Endereco ----------------------------------------*/
     private void SalvarEndereco(Pessoa pessoa, Endereco obj) {
         if (obj.getCodigo() == 0) {
-            try {
+            try 
+            {
                 PreparedStatement sql = getConexao().prepareStatement("insert into enderecos(pessoa,numero,rua,bairro,cidade,uf,pais) values(?,?,?,?,?,?,?,?)");
                 sql.setInt(1, pessoa.getCodigo());
                 sql.setInt(2, obj.getNumero());
@@ -186,7 +187,8 @@ public class PessoaDAO extends DAO {
                 sql.setString(7, obj.getPais());
                 sql.executeUpdate();
             } 
-            catch (Exception ex) {
+            catch (Exception ex) 
+            {
                 System.err.println(ex.getMessage());                
             }
         } 
