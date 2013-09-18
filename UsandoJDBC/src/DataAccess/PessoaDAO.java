@@ -31,9 +31,20 @@ public class PessoaDAO extends DAO {
                 sql.executeUpdate();
                 return true;
                 
-               /*------- Salva o email ------------------*/ 
-                for(Email e : obj.getEmails()){
-                    SalvaEmail(obj,e);
+               /*------- Salva o email ---------------------------------------*/ 
+                for(Email e : obj.getEmails())
+                {
+                    SalvarEmail(obj,e);
+                }
+                /*------- Salva o Endereco -----------------------------------*/
+                for(Endereco e : obj.getEnderecos())
+                {
+                    SalvarEndereco(obj,e);
+                }
+                /*------- Salva o Telefone -----------------------------------*/
+                for(Telefone e : obj.getTelefones())
+                {
+                    SalvarTelefone(obj,e);
                 }
 
             } catch (Exception ex) {
@@ -126,7 +137,7 @@ public class PessoaDAO extends DAO {
         }
     }
 
-    /*------------------------------------------------------------------------*/
+    /*------------------ Salvar Email ----------------------------------------*/
     private void SalvarEmail(Pessoa pessoa, Email obj) {
         if (obj.getCodigo() == 0) {
             try {
@@ -143,8 +154,74 @@ public class PessoaDAO extends DAO {
         else {
             try{
                 PreparedStatement sql = getConexao().prepareStatement("update emails set pessoa = ?, email = ? where id = ?");
-                sql.setString(1, pessoa.getCodigo());
+                sql.setInt(1, pessoa.getCodigo());
                 sql.setString(2, obj.getEmail());
+                sql.setInt(3, obj.getCodigo());
+                sql.executeQuery();
+            } 
+            catch (Exception ex) {
+                System.err.println(ex.getMessage());                
+            }
+        }
+    }
+    /*------------------ Salvar Endereco ----------------------------------------*/
+    private void SalvarEndereco(Pessoa pessoa, Endereco obj) {
+        if (obj.getCodigo() == 0) {
+            try {
+                PreparedStatement sql = getConexao().prepareStatement("insert into enderecos(pessoa,numero,rua,bairro,cidade,uf,pais) values(?,?,?,?,?,?,?,?)");
+                sql.setInt(1, pessoa.getCodigo());
+                sql.setInt(2, obj.getNumero());
+                sql.setString(3, obj.getRua());
+                sql.setString(4, obj.getBairro());               
+                sql.setString(5, obj.getCidade());
+                sql.setString(6, obj.getUf());
+                sql.setString(7, obj.getPais());
+                sql.executeUpdate();
+            } 
+            catch (Exception ex) {
+                System.err.println(ex.getMessage());                
+            }
+        } 
+        else {
+            try{
+                PreparedStatement sql = getConexao().prepareStatement("update enderecos set pessoa=?, numero=?, rua=?, bairro=?,cidade=?,uf=?,pais=? where id = ?");
+                sql.setInt(2, obj.getNumero());
+                sql.setString(3, obj.getRua());
+                sql.setString(4, obj.getBairro());               
+                sql.setString(5, obj.getCidade());
+                sql.setString(6, obj.getUf());
+                sql.setString(7, obj.getPais());
+                sql.setInt(3, obj.getCodigo());
+                sql.executeQuery();
+            } 
+            catch (Exception ex) {
+                System.err.println(ex.getMessage());                
+            }
+        }
+    }
+    /*------------------ Salvar Telefones ----------------------------------------*/
+    private void SalvarTelefone(Pessoa pessoa, Telefone obj) {
+        if (obj.getCodigo() == 0) {
+            try {
+                PreparedStatement sql = getConexao().prepareStatement("insert into telefones(pessoa,telefone,operadora,ddd) values(?,?,?,?)");
+                sql.setInt(1, pessoa.getCodigo());
+                sql.setInt(2, obj.getTelefone());
+                sql.setInt(3, obj.getOperadora());
+                sql.setInt(4, obj.getDDD());
+                sql.executeUpdate();
+
+            } 
+            catch (Exception ex) {
+                System.err.println(ex.getMessage());                
+            }
+        } 
+        else {
+            try{
+                PreparedStatement sql = getConexao().prepareStatement("update emails set pessoa = ?, telefone = ?, operadora = ?, ddd = ? where id = ?");
+                sql.setInt(1, pessoa.getCodigo());
+                sql.setInt(2, obj.getTelefone());
+                sql.setInt(3, obj.getOperadora());
+                sql.setInt(4, obj.getDDD());
                 sql.setInt(3, obj.getCodigo());
                 sql.executeQuery();
             } 
