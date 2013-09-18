@@ -26,10 +26,18 @@ public class PessoaDAO extends DAO {
         if (obj.getCodigo() == 0) {
             try {
                 PreparedStatement sql = getConexao().prepareStatement("insert into pessoa(Nome,DataNascimento) values(?,?)");
-                sql.setString(1, obj.getNome());
+                sql.setString(1, obj.getNome());                
                 sql.setDate(2, new java.sql.Date(obj.getDataNascimento().getTime()));
+                
                 sql.executeUpdate();
                 
+                PreparedStatement sql2 = getConexao().prepareStatement("select codPessoa from pessoa where nome = ? and DataNascimento = ?");
+                sql2.setString(1, obj.getNome());                
+                sql2.setDate(2, new java.sql.Date(obj.getDataNascimento().getTime()));
+                ResultSet resultado = sql2.executeQuery();
+                if(resultado.next()){
+                    obj.setCodigo(resultado.getInt("codPessoa"));
+                }
                 
                /*------- Salva o email ---------------------------------------*/ 
                 for(Email e : obj.getEmails())
