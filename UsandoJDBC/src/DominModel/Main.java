@@ -30,7 +30,7 @@ public class Main
         
         //dao.Salvar(pessoa);  
         //dao.Remover(pessoa);
-        pessoa = dao.Abrir(4);
+        /*pessoa = dao.Abrir(4);
         
         System.out.print("Codigo: ");
         System.out.println(pessoa.getCodigo());
@@ -39,7 +39,17 @@ public class Main
         System.out.println(pessoa.getNome());
         
         System.out.print("Data de Nascimento: ");
-        System.out.println(pessoa.getDataNascimento());
+        System.out.println(pessoa.getDataNascimento());*/
+        Pessoa p = new Pessoa();
+        p.setNome("Pessoa1");
+        p.add(new Email("email@teste"));
+        p.add(new Email("email@teste2"));
+        p.add(new Telefone("32156611"));
+        p.add(new Telefone("32212011"));
+        p.add(new Endereco("rua tal"));
+        
+        PessoaDAO dao = new PessoaDAO();
+        dao.Salvar();
     }
 }
 
