@@ -50,34 +50,48 @@ public class Venda {
     
     
    /*-------- Setters---------------------------------------------------------*/
-    public void setCodigo(int codigo) {
+    public void setCodigo(int codigo) throws Exception
+    {
         if(codigo >= 1)
             this.codigo = codigo;
+        else{
+         throw new Exception("Codigo Invalido!");
+       }
     }
     
-    public void setData(Date data)
+    public void setData(Date data)throws Exception
     {       
         Calendar calendario = GregorianCalendar.getInstance();
         calendario.set(1800,1,1);
         
         if(calendario.getTime().after(data))
               this.data = data;
+        else{
+         throw new Exception("Data Invalida!");
+       }
     }
     
-    private void setValorTotal(double valor)
+    private void setValorTotal(double valor)throws Exception
     {
-        //Falta fazer a conta do Valor Total
-        this.valorTotal = valor;
+        if(valor > 1)
+             this.valorTotal = valor;
+        else{
+         throw new Exception("Valor Invalido!");
+       }
     }
     
-    public void setPessoa(Pessoa pessoa){
+    public void setPessoa(Pessoa pessoa)throws Exception
+    {
         if(pessoa != null){
             this.pessoa = pessoa;
         }
+        else{
+         throw new Exception("Valor passado para o campo 'Pessoa' é Nulo!");
+       }
     }
     
   /*--------------- Adiciona umm item á venda --------------------------------*/  
-    public void addItemVenda(ItemVenda itemVenda){
+    public void addItemVenda(ItemVenda itemVenda) throws Exception{
         if(!itensVenda.contains(itemVenda)){
             itensVenda.add(itemVenda);
             
@@ -86,7 +100,7 @@ public class Venda {
         }
     }
   /*--------------- Remove um item da Venda-----------------------------------*/  
-    public void removeItemVenda(ItemVenda itemVenda){
+    public void removeItemVenda(ItemVenda itemVenda) throws Exception{
         if(itensVenda.contains(itemVenda)){
             itensVenda.remove(itemVenda);
             
