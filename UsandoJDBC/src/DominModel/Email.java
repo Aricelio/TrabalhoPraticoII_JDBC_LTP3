@@ -25,18 +25,29 @@ public class Email
         return email;
     }
 
-    public void setCodigo(int codigo) {
+    /**
+     *
+     * @param codigo
+     */
+    public void setCodigo(int codigo) throws Exception
+    {
        if(codigo >= 1)
-         this.codigo = codigo;
+           this.codigo = codigo;
+       else{
+           throw new Exception("Valor passado para o campo 'Codigo' é Invalido!");
+       }
     }
 
-    public void setEmail(String email) 
+    public void setEmail(String email) throws Exception
     {
         Pattern emailP = Pattern.compile("[a-zA-Z0-9\\-_.]{3,250}@[\\d\\w]+.[\\w.]+");
         Matcher verifica = emailP.matcher(email);
         
         if(verifica.matches())
             this.email = email;
+        else{
+           throw new Exception("Valor passado para o campo 'Email' é Invalido!");
+       }
     }
 
     @Override
