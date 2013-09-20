@@ -35,21 +35,31 @@ public class ItemVenda
         return total;
     }
     /*-------- Setters--------------------------------------------------------*/
-     public void setCodigo(int codigo) {
+    public void setCodigo(int codigo)throws Exception
+    {
        if(codigo >= 1)
          this.codigo = codigo;
+       else{
+         throw new Exception("Valor passado para o campo 'Codigo' é invalido!");
+       }
     }
      
-    public void setQuantidade(int quantidade) 
+    public void setQuantidade(int quantidade)throws Exception 
     {
         if(quantidade >= 1)
               this.quantidade = quantidade;
+        else{
+         throw new Exception("Quantidade inferior á 1!");
+        }
     }
      
-    public void setProduto(Produto produto)
+    public void setProduto(Produto produto)throws Exception
     {
         if(produto != null)
             this.produto = produto;
+        else{
+         throw new Exception("Valor passado para o campo 'Produto' é Nulo!");
+        }
     }
 }
 
