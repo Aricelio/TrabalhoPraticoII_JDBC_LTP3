@@ -67,7 +67,7 @@ public class Venda {
         if(calendario.getTime().after(data))
               this.data = data;
         else{
-         throw new Exception("Data Invalida!");
+         throw new Exception("Data inserida é Invalida!");
        }
     }
     
@@ -76,7 +76,7 @@ public class Venda {
         if(valor > 1)
              this.valorTotal = valor;
         else{
-         throw new Exception("Valor Invalido!");
+         throw new Exception("Valor Invalido! O valor é menor que 1");
        }
     }
     
@@ -87,7 +87,7 @@ public class Venda {
         }
         else{
          throw new Exception("Valor passado para o campo 'Pessoa' é Nulo!");
-       }
+        }
     }
     
   /*--------------- Adiciona umm item á venda --------------------------------*/  
@@ -98,6 +98,10 @@ public class Venda {
             double valor = itemVenda.getValorTotalItem() + getValorTotal();
             setValorTotal(valor);
         }
+        else{
+         throw new Exception("Esse item já esta contido na lista de Vendas");
+        }
+        
     }
   /*--------------- Remove um item da Venda-----------------------------------*/  
     public void removeItemVenda(ItemVenda itemVenda) throws Exception{
@@ -106,6 +110,9 @@ public class Venda {
             
             double valor = getValorTotal() - itemVenda.getValorTotalItem();
             setValorTotal(valor);
+        }
+        else{
+         throw new Exception("Esse item não existe na lista de Vendas!");
         }
     }
 
