@@ -41,13 +41,16 @@ public class Pessoa {
         return nome;
     }
 
-    public void setNome(String nome) 
+    public void setNome(String nome)throws Exception 
     {
         Pattern Nome = Pattern.compile("[\\w\\s]{3,}");
         Matcher verifica = Nome.matcher(nome);
         
         if(verifica.matches())
               this.nome = nome;
+        else{
+            throw new Exception("Valor passado para o campo 'Nome' é invalido!");
+        }
     }
     /*--------------------- Data de Nascimento -------------------------------*/
     public Date getDataNascimento() 
@@ -55,13 +58,16 @@ public class Pessoa {
         return DataNascimento;
     }
 
-    public void setDataNascimento(Date DataNascimento) 
+    public void setDataNascimento(Date DataNascimento)throws Exception 
     {
         Calendar calendario = GregorianCalendar.getInstance();
         calendario.set(1900,1,1);
         
         if(calendario.getTime().before(DataNascimento))
              this.DataNascimento = DataNascimento;
+        else{
+            throw new Exception("Valor passado para o campo 'Data' é invalido!");
+        }
     }
     /*--------------------- Codigo -------------------------------------------*/
     public int getCodigo() 
@@ -69,22 +75,33 @@ public class Pessoa {
         return codigo;
     }
 
-    public void setCodigo(int codigo) 
+    public void setCodigo(int codigo)throws Exception 
     {
         if(codigo >= 0)
             this.codigo = codigo;
+        else{
+            throw new Exception("Valor passado para o campo 'Codigo' é invalido!");
+        }
     }
 
     /*----------- Adicionar email---------------------------------------------*/  
-    public void addEmail(Email email){
+    public void addEmail(Email email)throws Exception
+    {
         if(!emails.contains(email)){
             emails.add(email);
         }
+        else{
+            throw new Exception("Esse email ja foi cadastrado!");
+        }
     }
    /*-----------Remover Email-------------------------------------------------*/
-    public void removeEmail(Email email){
+    public void removeEmail(Email email)throws Exception
+    {
         if(emails.contains(email)){
             emails.remove(email);
+        }
+        else{
+            throw new Exception("O email pedido não existe!");
         }
     } 
     /*----------- Retorna a lista de emails ----------------------------------*/
@@ -93,32 +110,47 @@ public class Pessoa {
     }
     
     /*----------- Adiciona um Endereco ---------------------------------------*/
-     public void addEndereco(Endereco endereco){
-        if(!enderecos.contains(endereco)){
+     public void addEndereco(Endereco endereco)throws Exception 
+     {
+        if(!enderecos.contains(endereco))
             enderecos.add(endereco);
+        else{
+            throw new Exception("O valor passado para o campo endereco ja existe!");
         }
-    }
+     }
     /*----------- Remove um Endereco -----------------------------------------*/
-     public void removeEndereco(Endereco endereco){
+     public void removeEndereco(Endereco endereco)throws Exception
+     {
         if(enderecos.contains(endereco)){
             enderecos.remove(endereco);
         }
+        else{
+            throw new Exception("Não foi possivel remover o endereço, pois ele não existe!");
+        }
+        
     } 
     /*----------- Retorna a lista de Enderecos--------------------------------*/
     public List<Endereco> getEnderecos(){
         return enderecos;
     }
       /*-----------Adicionar um Telefone----------*/ 
-    public void addTelefone(Telefone telefone)
+    public void addTelefone(Telefone telefone)throws Exception
     {
         if(!telefones.contains(telefone)){
             telefones.add(telefone);
         }
+        else{
+            throw new Exception("O valor passado para o campo telefone ja existe!");
+        }
     }
     /*----------Remove uma Telefone----------------*/ 
-    public void removeTelefone(Telefone telefone){
+    public void removeTelefone(Telefone telefone)throws Exception
+    {
         if(telefones.contains(telefone)){
             telefones.remove(telefone);
+        }
+        else{
+            throw new Exception("Não foi possivel remover o telefone, pois ele não existe!");
         }
     } 
     /*--------- Retorna a lista de telefones ---------------------------------*/
