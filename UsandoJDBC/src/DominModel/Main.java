@@ -17,7 +17,7 @@ public class Main
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) 
+    public static void main(String[] args) throws Exception 
     {
         // TODO code application logic here
         Pessoa pessoa = new Pessoa();
@@ -63,34 +63,36 @@ public class Main
         te.setOperadora((byte)012);
         
         en.setNumero(98);
-        en.setRua("Rua Coronel Serrão");
-        en.setBairro("São José");
+        /*en.setRua("Rua Coronel Serrao");
+        en.setBairro("Sao Jose");
         en.setCidade("Itacarambi");
         en.setUf("MG");
         en.setPais("Brasil");
         
         end.setNumero(300);
         end.setRua("Rua das Flores");
-        en.setBairro("Centro");
-        en.setCidade("Januaria");
-        en.setUf("MG");
-        en.setPais("Brasil");
+        end.setBairro("Centro");
+        end.setCidade("Januaria");
+        end.setUf("MG");
+        end.setPais("Brasil");
         
         p.setNome("Philipe Souza");
         
         p.setDataNascimento(new Date());
         
+        p.addEndereco(en);
+        p.addEndereco(end);
+        
         p.addEmail(e);
         p.addEmail(f);
         p.addTelefone(t);
         p.addTelefone(te);
-        p.addEndereco(en);
-        p.addEndereco(end);
+        
         
         
         
         PessoaDAO dao = new PessoaDAO();
-        dao.Salvar(p);
+        dao.Salvar(p);*/
     }
 }
 
