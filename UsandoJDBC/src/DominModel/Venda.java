@@ -64,7 +64,7 @@ public class Venda {
         Calendar calendario = GregorianCalendar.getInstance();
         calendario.set(1800,1,1);
         
-        if(calendario.getTime().after(data))
+        if(calendario.getTime().before(data))
               this.data = data;
         else{
          throw new Exception("Data inserida é Invalida!");
