@@ -82,7 +82,6 @@ public class PessoaDAO extends DAO {
             try {
                 PreparedStatement sql = getConexao().prepareStatement("delete from pessoa where codPessoa=?");
                 sql.setInt(1, obj.getCodigo());
-                //sql.setDate(2, new java.sql.Date( obj.getDataNascimento().getTime() ));
                 sql.executeUpdate();
                 return true;
 
@@ -177,7 +176,7 @@ public class PessoaDAO extends DAO {
         if (obj.getCodigo() == 0) {
             try 
             {
-                PreparedStatement sql = getConexao().prepareStatement("insert into enderecos(pessoa,numero,rua,bairro,cidade,uf,pais) values(?,?,?,?,?,?,?,?)");
+                PreparedStatement sql = getConexao().prepareStatement("insert into enderecos(pessoa,numero,rua,bairro,cidade,uf,pais) values(?,?,?,?,?,?,?)");
                 sql.setInt(1, pessoa.getCodigo());
                 sql.setInt(2, obj.getNumero());
                 sql.setString(3, obj.getRua());
