@@ -20,7 +20,7 @@ public class Main
     public static void main(String[] args) throws Exception 
     {
         // TODO code application logic here
-        Pessoa pessoa = new Pessoa();
+        //Pessoa pessoa = new Pessoa();
         
         //pessoa.setCodigo(3);
         //pessoa.setNome("Celi");
@@ -40,7 +40,7 @@ public class Main
         
         System.out.print("Data de Nascimento: ");
         System.out.println(pessoa.getDataNascimento());*/
-        Pessoa p = new Pessoa();
+        /*Pessoa p = new Pessoa();
         
         Email e = new Email();
         Email f = new Email();
@@ -63,7 +63,7 @@ public class Main
         te.setOperadora((byte)012);
         
         en.setNumero(98);
-        /*en.setRua("Rua Coronel Serrao");
+        en.setRua("Rua Coronel Serrao");
         en.setBairro("Sao Jose");
         en.setCidade("Itacarambi");
         en.setUf("MG");
@@ -93,6 +93,26 @@ public class Main
         
         PessoaDAO dao = new PessoaDAO();
         dao.Salvar(p);*/
+        /*------- Teste da Venda ------*/
+        Venda venda = new Venda();
+        
+        //venda.setData(new Date());
+        //venda.setValorTotal(200);
+        venda.setCodigo(2);
+        
+        VendaDAO vDAO = new VendaDAO();
+        vDAO.Remover(venda);
+        
+        /*-------- Teste do Produto ------
+        Produto p = new Produto();
+        //p.setNome("Arroz");
+        //p.setPreco(45);
+        //p.setTipo("Alimenticio");
+        p.setCodigo(0);
+        
+        ProdutoDAO pd = new ProdutoDAO();
+        pd.Remover(p);*/
+        
     }
 }
 
