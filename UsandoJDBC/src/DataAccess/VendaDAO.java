@@ -52,8 +52,10 @@ public class VendaDAO extends DAO{
                 return false;
             }
         }
-        else {
-            try {
+        else 
+        {
+            try 
+            {
                 Connection con = getConexao();
                 PreparedStatement sql = con.prepareStatement("update Vendas set valorTotal=?, Data=?, codPessoa = ? where codVenda=?");
                 sql.setDouble(1, obj.getValorTotal());
