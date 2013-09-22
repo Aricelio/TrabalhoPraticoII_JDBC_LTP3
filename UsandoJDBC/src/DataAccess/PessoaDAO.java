@@ -118,7 +118,6 @@ public class PessoaDAO extends DAO {
         }
     }
     /*------------------- Listar ---------------------------------------------*/
-
     public List<Pessoa> ListarTodos() {
         try {
             PreparedStatement sql = getConexao().prepareStatement("select * from Pessoa");
