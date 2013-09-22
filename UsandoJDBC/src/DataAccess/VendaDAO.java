@@ -25,9 +25,10 @@ public class VendaDAO extends DAO{
         if (obj.getCodigo() == 0) 
         {
             try {
-                PreparedStatement sql = getConexao().prepareStatement("insert into vendas(valorTotal,data) values(?,?)");
+                PreparedStatement sql = getConexao().prepareStatement("insert into vendas(valorTotal,data,codPessoa) values(?,?,?)");
                 sql.setDouble(1, obj.getValorTotal());                
-                sql.setDate(2, new java.sql.Date(obj.getData().getTime()));                
+                sql.setDate(2, new java.sql.Date(obj.getData().getTime()));  
+                sql.setInt(3, obj.getPessoa().getCodigo());
                 sql.executeUpdate();
                 
                 
@@ -39,11 +40,11 @@ public class VendaDAO extends DAO{
                     obj.setCodigo(resultado.getInt("codVenda"));
                 }
                 
-               /*------- Salva o email ---------------------------------------*/ 
-                /*for(Email e : obj.getEmails())
+               /*------- Salva o um item de venda ----------------------------*/ 
+                for(ItemVenda it : obj.getItensVenda())
                 {
-                    SalvarEmail(obj,e);
-                }*/
+                    SalvarItemVenda(it.getProduto(), obj, it);
+                }
                 
                 return true;
             } catch (Exception ex) {
@@ -54,10 +55,11 @@ public class VendaDAO extends DAO{
         else {
             try {
                 Connection con = getConexao();
-                PreparedStatement sql = con.prepareStatement("update Vendas set valorTotal=?, Data=? where codVenda=?");
+                PreparedStatement sql = con.prepareStatement("update Vendas set valorTotal=?, Data=?, codPessoa = ? where codVenda=?");
                 sql.setDouble(1, obj.getValorTotal());
                 sql.setDate(2, new java.sql.Date(obj.getData().getTime())); 
-                sql.setInt(3, obj.getCodigo());
+                sql.setInt(3, obj.getPessoa().getCodigo());
+                sql.setInt(4, obj.getCodigo());
                 sql.executeUpdate();
                 return true;
 
@@ -135,6 +137,37 @@ public class VendaDAO extends DAO{
             return null;
         }
     }
-    
+    /*------------------- Salva um item da venda -----------------------------*/
+    private void SalvarItemVenda(Produto produto, Venda venda, ItemVenda obj) {
+        if (obj.getCodigo() == 0) {
+            try {
+                PreparedStatement sql = getConexao().prepareStatement("insert into ItemVenda(codProduto,codVenda,quantidade) values(?,?,?)");
+                sql.setInt(1, produto.getCodigo());
+                sql.setInt(2, venda.getCodigo());
+                sql.setInt(3, obj.getQuantidade());
+                
+                sql.executeUpdate();
+                
+                obj.setCodigo(venda.getCodigo());
+            } 
+            catch (Exception ex) {
+                System.err.println(ex.getMessage());                
+            }
+        } 
+        else {
+            try{
+                PreparedStatement sql = getConexao().prepareStatement("update ItemVenda set quantidade = ?, codProduto = ? where  codVenda = ?");
+                sql.setInt(1, obj.getQuantidade());
+                sql.setInt(2, produto.getCodigo());
+                sql.setInt(3, obj.getCodigo());                
+                sql.executeQuery();
+                
+                
+            } 
+            catch (Exception ex) {
+                System.err.println(ex.getMessage());                
+            }
+        }
+    }
     
 }
