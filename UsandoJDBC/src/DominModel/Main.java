@@ -20,9 +20,9 @@ public class Main
     public static void main(String[] args) throws Exception 
     {
         // TODO code application logic here
-        //Pessoa pessoa = new Pessoa();
+        Pessoa pessoa = new Pessoa();
         
-        //pessoa.setCodigo(3);
+        pessoa.setCodigo(4);
         //pessoa.setNome("Celi");
         //pessoa.setDataNascimento(new Date());
         
@@ -93,25 +93,53 @@ public class Main
         
         PessoaDAO dao = new PessoaDAO();
         dao.Salvar(p);*/
-        /*------- Teste da Venda ------*/
+        /*------- TESTE DA VENDA  ---------------------------------------------
         Venda venda = new Venda();
+        VendaDAO vDAO = new VendaDAO();
         
         //venda.setData(new Date());
         //venda.setValorTotal(200);
-        venda.setCodigo(2);
+        //venda.setCodigo(2);
         
-        VendaDAO vDAO = new VendaDAO();
-        vDAO.Remover(venda);
         
-        /*-------- Teste do Produto ------
+        //vDAO.Remover(venda);
+        
+        //----------- Método Abrir ---------------//
+        venda = vDAO.Abrir(1);
+        System.out.println(venda.getData());*/
+        
+        /*-------- TESTE DO PRODUTO ------------------------------------------
         Produto p = new Produto();
+        ProdutoDAO pd = new ProdutoDAO();
+        
         //p.setNome("Arroz");
         //p.setPreco(45);
         //p.setTipo("Alimenticio");
-        p.setCodigo(0);
+        //p.setCodigo(0);
         
-        ProdutoDAO pd = new ProdutoDAO();
-        pd.Remover(p);*/
+        //----------- Método Abrir ---------------//
+        p = pd.Abrir(1);
+        System.out.println(p.getTipo());*/
+        
+        /*================== TESTE DO ITEM VENDA =============================*/
+        /*Produto pr = new Produto();
+        Venda venda = new Venda();
+        ItemVenda it = new ItemVenda();
+        VendaDAO vDAO = new VendaDAO();
+        ProdutoDAO pDAO = new ProdutoDAO();
+        
+        pr.setCodigo(2);
+        pr.setPreco(5);
+        //pDAO.Salvar(pr);
+        
+        it.setProduto(pr);
+        it.setQuantidade(5);
+        
+        venda.setData(new Date());
+        venda.setPessoa(pessoa);
+        venda.addItemVenda(it);
+        
+        vDAO.Salvar(venda); */       
         
     }
 }
