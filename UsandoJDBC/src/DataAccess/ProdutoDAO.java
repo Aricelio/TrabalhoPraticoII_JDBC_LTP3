@@ -87,5 +87,31 @@ public class ProdutoDAO extends DAO{
         }
         return true;   
     }
+    /*--------------------- Abrir --------------------------------------------*/
+
+    public Produto Abrir(int id) {
+        try {
+            PreparedStatement sql = getConexao().prepareStatement("select * from produtos where codProduto=?");
+            sql.setInt(1, id);
+
+            ResultSet resultado = sql.executeQuery();
+
+            if (resultado.next()) {
+                Produto obj = new Produto();
+
+                obj.setCodigo(resultado.getInt("codProduto"));
+                obj.setNome(resultado.getString("Nome"));
+                obj.setPreco(resultado.getDouble("Preco"));
+                obj.setTipo(resultado.getString("Tipo"));
+
+                return obj;
+            } else {
+                return null;
+            }
+        } catch (Exception ex) {
+            System.err.println(ex.getMessage());
+            return null;
+        }
+    }
 }
 
