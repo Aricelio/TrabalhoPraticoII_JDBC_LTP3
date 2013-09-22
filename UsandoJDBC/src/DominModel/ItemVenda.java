@@ -20,6 +20,10 @@ public class ItemVenda
 
     
    /*-------- Getters---------------------------------------------------------*/ 
+    public Produto getProduto(){
+        return this.produto;
+    }
+    
     public int getCodigo() {
         return codigo;
     }
