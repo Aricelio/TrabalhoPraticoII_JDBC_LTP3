@@ -32,6 +32,10 @@ public class Venda {
         
     }
   /*-------Getter-------------------------------------------------------------*/
+    public List<ItemVenda> getItensVenda(){
+        return this.itensVenda;
+    }
+    
     public int getCodigo() {
         return codigo;
     }
@@ -71,7 +75,7 @@ public class Venda {
        }
     }
     
-    private void setValorTotal(double valor)throws Exception
+    public void setValorTotal(double valor)throws Exception
     {
         if(valor > 1)
              this.valorTotal = valor;
