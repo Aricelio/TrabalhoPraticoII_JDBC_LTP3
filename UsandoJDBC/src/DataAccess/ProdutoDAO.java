@@ -7,6 +7,8 @@ import DominModel.*; //Importando o Pacote DominModel
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -108,6 +110,33 @@ public class ProdutoDAO extends DAO{
             } else {
                 return null;
             }
+        } catch (Exception ex) {
+            System.err.println(ex.getMessage());
+            return null;
+        }
+    }
+    
+    /*------------------- Listar ---------------------------------------------*/
+    public List<Produto> ListarProdutos() {
+        try {
+            PreparedStatement sql = getConexao().prepareStatement("select * from Produtos");
+
+            ResultSet resultado = sql.executeQuery();
+
+            List<Produto> lista = new ArrayList<Produto>();
+
+            while (resultado.next()) {
+                Produto obj = new Produto();
+
+                obj.setCodigo(resultado.getInt("codProduto"));
+                obj.setNome(resultado.getString("Nome"));
+                obj.setPreco(resultado.getDouble("Preco"));
+                obj.setTipo(resultado.getString("Tipo"));
+
+                lista.add(obj);
+            }
+
+            return lista;
         } catch (Exception ex) {
             System.err.println(ex.getMessage());
             return null;
