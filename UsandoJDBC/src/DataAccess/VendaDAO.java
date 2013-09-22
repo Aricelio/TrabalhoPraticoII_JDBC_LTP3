@@ -85,6 +85,56 @@ public class VendaDAO extends DAO{
         }
         return true;   
     }
+    /*--------------------- Abrir --------------------------------------------*/
+
+    public Venda Abrir(int id) {
+        try {
+            PreparedStatement sql = getConexao().prepareStatement("select * from Vendas where codVenda=?");
+            sql.setInt(1, id);
+
+            ResultSet resultado = sql.executeQuery();
+
+            if (resultado.next()) {
+                Venda obj = new Venda();
+
+                obj.setCodigo(resultado.getInt("codVenda"));                
+                obj.setData(resultado.getDate("Data"));
+                obj.setValorTotal(resultado.getDouble("ValorTotal"));
+
+                return obj;
+            } else {
+                return null;
+            }
+        } catch (Exception ex) {
+            System.err.println(ex.getMessage());
+            return null;
+        }
+    }
+    /*------------------- Listar ---------------------------------------------*/
+    public List<Venda> ListarVendas() 
+    {
+        try {
+            PreparedStatement sql = getConexao().prepareStatement("select * from Vendas");
+
+            ResultSet resultado = sql.executeQuery();
+
+            List<Venda> lista = new ArrayList<Venda>();
+
+            while (resultado.next()) {
+                Venda obj = new Venda();
+
+                obj.setCodigo(resultado.getInt("codVenda"));                
+                obj.setData(resultado.getDate("Data"));
+                obj.setValorTotal(resultado.getDouble("ValorTotal"));
+
+                lista.add(obj);
+            }
+            return lista;
+        } catch (Exception ex) {
+            System.err.println(ex.getMessage());
+            return null;
+        }
+    }
     
     
 }
